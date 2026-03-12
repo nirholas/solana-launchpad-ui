@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pump.fun — the token launchpad</title>
+  <meta name="description" content="Create and trade tokens instantly on Solana. Bonding curve pricing, fair launches, no presales.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🟢</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="16" fill="url(#lg)" />
+          <path d="M12 24 L18 8 L24 24 L18 19 Z" fill="#0e0e16" />
+          <defs><linearGradient id="lg" x1="0" y1="0" x2="36" y2="36"><stop offset="0%" stop-color="#7bff69"/><stop offset="100%" stop-color="#00d4ff"/></linearGradient></defs>
+        </svg>
+        <span>pump<span class="logo-accent">.fun</span></span>
+        <span class="logo-crown">👑</span>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-link active">Board</a>
+        <a href="create.html" class="nav-link">Create</a>
+        <a href="token.html" class="nav-link">Trade</a>
+        <a href="profile.html" class="nav-link">Profile</a>
+      </nav>
+
+      <div class="header-search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" placeholder="Search tokens..." aria-label="Search tokens">
+      </div>
+
+      <button class="btn-wallet" onclick="alert('Wallet connect UI would appear here')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><circle cx="18" cy="16" r="1"/></svg>
+        <span>Connect Wallet</span>
+      </button>
+
+      <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile nav overlay -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="active">🏠 Board</a>
+    <a href="create.html">🪙 Create Token</a>
+    <a href="token.html">📈 Trade</a>
+    <a href="profile.html">👤 Profile</a>
+  </div>
+
+  <!-- ========== MAIN ========== -->
+  <main class="main">
+
+    <!-- Activity ticker -->
+    <div class="ticker-bar">
+      <div class="ticker-track" id="tickerTrack">
+        <!-- JS populates this -->
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- King of the Hill -->
+      <div class="king-banner fade-in">
+        <div class="king-banner-img" style="background: linear-gradient(135deg, #6366f1, #a855f7); display:flex; align-items:center; justify-content:center; color:white; font-size:28px; font-weight:900;">🐸</div>
+        <div class="king-banner-info">
+          <div class="king-banner-label">👑 King of the Hill</div>
+          <div class="king-banner-name">PEPE2025 <span style="color:var(--text-muted);font-size:14px;font-weight:400;">$PEPE25</span></div>
+          <div class="king-banner-stats">
+            <span>Market cap: <strong class="green">$847K</strong></span>
+            <span>24h vol: <strong>$2.1M</strong></span>
+            <span>Holders: <strong>4,821</strong></span>
+            <span><span class="live-dot"></span> <strong class="green">+342%</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tab-bar">
+        <button class="tab active" data-tab="terminal"><span class="tab-emoji">🖥️</span> Terminal</button>
+        <button class="tab" data-tab="trending"><span class="tab-emoji">🔥</span> Trending</button>
+        <button class="tab" data-tab="top"><span class="tab-emoji">🏆</span> Top</button>
+        <button class="tab" data-tab="new"><span class="tab-emoji">✨</span> New</button>
+        <button class="tab" data-tab="graduating"><span class="tab-emoji">🎓</span> About to Graduate</button>
+        <button class="tab" data-tab="graduated"><span class="tab-emoji">🚀</span> Graduated</button>
+
+        <div class="filter-group">
+          <button class="filter-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+            Filters
+          </button>
+          <button class="filter-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M6 12h12M9 18h6"/></svg>
+            Sort
+          </button>
+        </div>
+      </div>
+
+      <!-- Token Grid -->
+      <div class="token-grid" id="tokenGrid">
+        <!-- JS generates cards -->
+      </div>
+
+      <div style="text-align:center;padding:32px 0;">
+        <button class="btn btn-outline" onclick="loadMoreTokens()">Load More</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="#">Docs</a>
+        <a href="#">GitHub</a>
+        <a href="#">Twitter</a>
+        <a href="#">Telegram</a>
+        <a href="#">Discord</a>
+        <a href="#">Support</a>
+      </div>
+      <div class="footer-copy">© 2025 pump.fun — built on Solana</div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // Generate ticker items
+    generateTicker();
+    // Generate token cards
+    generateTokenGrid(12);
+    // Tab switching
+    initTabs();
+  </script>
+</body>
+</html>

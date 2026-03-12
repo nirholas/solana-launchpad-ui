@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Token — pump.fun</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🟢</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="16" fill="url(#lg)" />
+          <path d="M12 24 L18 8 L24 24 L18 19 Z" fill="#0e0e16" />
+          <defs><linearGradient id="lg" x1="0" y1="0" x2="36" y2="36"><stop offset="0%" stop-color="#7bff69"/><stop offset="100%" stop-color="#00d4ff"/></linearGradient></defs>
+        </svg>
+        <span>pump<span class="logo-accent">.fun</span></span>
+        <span class="logo-crown">👑</span>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Board</a>
+        <a href="create.html" class="nav-link active">Create</a>
+        <a href="token.html" class="nav-link">Trade</a>
+        <a href="profile.html" class="nav-link">Profile</a>
+      </nav>
+
+      <div class="header-search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" placeholder="Search tokens..." aria-label="Search tokens">
+      </div>
+
+      <button class="btn-wallet">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><circle cx="18" cy="16" r="1"/></svg>
+        <span>Connect Wallet</span>
+      </button>
+
+      <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">🏠 Board</a>
+    <a href="create.html" class="active">🪙 Create Token</a>
+    <a href="token.html">📈 Trade</a>
+    <a href="profile.html">👤 Profile</a>
+  </div>
+
+  <!-- ========== MAIN ========== -->
+  <main class="main">
+    <div class="create-page fade-in">
+      <h1 class="create-title">🪙 Create a New Token</h1>
+      <p class="create-subtitle">Launch your token on the bonding curve. No presale, no team allocation. Fair launch only.</p>
+
+      <form class="create-form" onsubmit="event.preventDefault(); alert('Token creation would happen here!');">
+
+        <!-- Image upload -->
+        <div class="form-group">
+          <label class="form-label">Token Image</label>
+          <div class="form-upload" onclick="document.getElementById('fileInput').click()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span>Upload image</span>
+            <span style="font-size:12px;color:var(--text-dim);">PNG, JPG, GIF (max 5MB)</span>
+          </div>
+          <input type="file" id="fileInput" accept="image/*" style="display:none">
+        </div>
+
+        <!-- Name -->
+        <div class="form-group">
+          <label class="form-label" for="tokenName">Name *</label>
+          <input type="text" id="tokenName" class="form-input" placeholder="e.g. PepeCoin" maxlength="32" required>
+          <p class="form-hint">Max 32 characters</p>
+        </div>
+
+        <!-- Ticker -->
+        <div class="form-group">
+          <label class="form-label" for="tokenTicker">Ticker *</label>
+          <input type="text" id="tokenTicker" class="form-input" placeholder="e.g. PEPE" maxlength="10" required style="text-transform:uppercase;">
+          <p class="form-hint">Max 10 characters, no spaces</p>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+          <label class="form-label" for="tokenDesc">Description</label>
+          <textarea id="tokenDesc" class="form-input" placeholder="Tell people what your token is about..." rows="4"></textarea>
+        </div>
+
+        <!-- Show more options -->
+        <button type="button" class="show-more-btn" onclick="toggleAdvanced()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="advancedArrow"><path d="m6 9 6 6 6-6"/></svg>
+          Show more options
+        </button>
+
+        <div id="advancedOptions" style="display:none;">
+          <!-- Social links -->
+          <div class="form-group" style="margin-bottom:20px;">
+            <label class="form-label">Social Links</label>
+            <div class="form-row">
+              <input type="url" class="form-input" placeholder="Twitter URL">
+              <input type="url" class="form-input" placeholder="Telegram URL">
+            </div>
+            <div class="form-row" style="margin-top:12px;">
+              <input type="url" class="form-input" placeholder="Website URL">
+              <input type="url" class="form-input" placeholder="Discord URL">
+            </div>
+          </div>
+
+          <!-- Mayhem Mode -->
+          <div class="form-switch-row" style="margin-bottom:12px;">
+            <div>
+              <div class="form-switch-label">🔥 Mayhem Mode</div>
+              <div class="form-switch-desc">Higher volatility, wilder price swings</div>
+            </div>
+            <div class="form-switch" onclick="this.classList.toggle('active')"></div>
+          </div>
+
+          <!-- Creator Fee -->
+          <div class="form-switch-row" style="margin-bottom:12px;">
+            <div>
+              <div class="form-switch-label">💰 Creator Fees</div>
+              <div class="form-switch-desc">Earn fees from trades on your token</div>
+            </div>
+            <div class="form-switch" onclick="this.classList.toggle('active')"></div>
+          </div>
+
+          <!-- Cashback -->
+          <div class="form-switch-row">
+            <div>
+              <div class="form-switch-label">🎁 Cashback Rewards</div>
+              <div class="form-switch-desc">Buyers earn cashback on trades</div>
+            </div>
+            <div class="form-switch" onclick="this.classList.toggle('active')"></div>
+          </div>
+        </div>
+
+        <!-- Initial buy -->
+        <div class="form-group" style="margin-top:8px;">
+          <label class="form-label">Initial Buy (Optional)</label>
+          <div class="trade-input-wrap">
+            <input type="number" class="trade-input" placeholder="0.0" step="0.01" min="0">
+            <div class="trade-input-suffix">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#9945FF"/><circle cx="12" cy="12" r="6" fill="url(#sol)"/><defs><linearGradient id="sol" x1="6" y1="6" x2="18" y2="18"><stop offset="0%" stop-color="#00FFA3"/><stop offset="100%" stop-color="#DC1FFF"/></linearGradient></defs></svg>
+              SOL
+            </div>
+          </div>
+          <p class="form-hint">Optional: Buy some of your own token at launch. Tip: keeps your skin in the game.</p>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="create-submit">🚀 Create Token</button>
+        <p class="create-cost-note">Cost: ~0.02 SOL (rent + fees)</p>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="#">Docs</a>
+        <a href="#">GitHub</a>
+        <a href="#">Twitter</a>
+        <a href="#">Telegram</a>
+      </div>
+      <div class="footer-copy">© 2025 pump.fun — built on Solana</div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    function toggleAdvanced() {
+      const el = document.getElementById('advancedOptions');
+      const arrow = document.getElementById('advancedArrow');
+      if (el.style.display === 'none') {
+        el.style.display = 'block';
+        arrow.style.transform = 'rotate(180deg)';
+      } else {
+        el.style.display = 'none';
+        arrow.style.transform = '';
+      }
+    }
+  </script>
+</body>
+</html>
