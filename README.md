@@ -76,3 +76,7 @@ Full documentation site: **https://nirholas.github.io/solana-launchpad-ui/**
 
 - [Getting started](docs/getting-started.md) covers install and first run.
 - [Examples](docs/examples.md) has copy-paste snippets.
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=nirholas/solana-launchpad-ui&type=Date)](https://www.star-history.com/#nirholas/solana-launchpad-ui&Date)
