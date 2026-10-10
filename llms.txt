@@ -1,0 +1,28 @@
+# solana-launchpad-ui
+
+> Token launchpad UI template inspired by pump.fun: dark theme, bonding curves, trading panel, 4 pages, pure HTML/CSS/JS, no dependencies.
+
+solana-launchpad-ui is an open-source repository by nirholas, part of the three.ws ecosystem.
+
+## Docs
+
+- [README](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/README.md): install, usage and reference
+- [Pages](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/README.md#pages)
+- [Live Demo](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/README.md#live-demo)
+- [Running Locally](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/README.md#running-locally)
+- [Features](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/README.md#features)
+- [Customization](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/README.md#customization)
+- [Deploying](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/README.md#deploying)
+- [License](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/README.md#license)
+- [Documentation](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/README.md#documentation)
+- [AGENTS.md](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/AGENTS.md): guidance for coding agents
+- [Full text for LLMs](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/llms-full.txt): the README inlined
+
+## Project
+
+- [Source](https://github.com/nirholas/solana-launchpad-ui)
+- [Issues](https://github.com/nirholas/solana-launchpad-ui/issues)
+- [Discussions](https://github.com/nirholas/solana-launchpad-ui/discussions)
+- [Homepage](https://nirholas.github.io/solana-launchpad-ui/)
+- [three.ws](https://three.ws): the platform this is part of
+- [All repositories by nirholas](https://github.com/nirholas/nirholas#readme)

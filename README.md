@@ -1,5 +1,10 @@
 # PumpFun Site — Design Template
 
+<!-- three.ws:badges -->
+[![GitHub stars](https://img.shields.io/github/stars/nirholas/solana-launchpad-ui?style=flat&logo=github)](https://github.com/nirholas/solana-launchpad-ui/stargazers) [![Last commit](https://img.shields.io/github/last-commit/nirholas/solana-launchpad-ui?style=flat)](https://github.com/nirholas/solana-launchpad-ui/commits) [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat)](https://github.com/nirholas/solana-launchpad-ui/pulls) [![AI agent friendly](https://img.shields.io/badge/AI%20agents-AGENTS.md%20%2B%20llms.txt-6d5dfc?style=flat)](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/AGENTS.md)
+<!-- /three.ws:badges -->
+
+
 > **Purpose:** Static UI design template of pump.fun — mock data only, no blockchain integration.
 
 Static design template clone of pump.fun for the Pump SDK project. **No blockchain functionality** — pure HTML/CSS/JS with mock data.
@@ -80,3 +85,26 @@ Full documentation site: **https://nirholas.github.io/solana-launchpad-ui/**
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=nirholas/solana-launchpad-ui&type=Date)](https://www.star-history.com/#nirholas/solana-launchpad-ui&Date)
+
+<!-- three.ws:growth -->
+## Support the project
+
+If solana-launchpad-ui saves you time, **[star it on GitHub](https://github.com/nirholas/solana-launchpad-ui)**. Stars are how other developers and AI agents find the repositories worth trusting, and they cost you one click.
+
+Know someone who would use it? [Post on X](https://twitter.com/intent/tweet?text=solana-launchpad-ui%3A%20Token%20launchpad%20UI%20template%20inspired%20by%20pump.fun%3A%20dark%20theme%2C%20bonding%20curves%2C%20trading%20panel%2C%204&url=https%3A%2F%2Fgithub.com%2Fnirholas%2Fsolana-launchpad-ui) · [Share on Bluesky](https://bsky.app/intent/compose?text=solana-launchpad-ui%3A%20Token%20launchpad%20UI%20template%20inspired%20by%20pump.fun%3A%20dark%20theme%2C%20bonding%20curves%2C%20trading%20panel%2C%204%20https%3A%2F%2Fgithub.com%2Fnirholas%2Fsolana-launchpad-ui) · [Share on LinkedIn](https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgithub.com%2Fnirholas%2Fsolana-launchpad-ui) · [Submit to Hacker News](https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fgithub.com%2Fnirholas%2Fsolana-launchpad-ui&t=solana-launchpad-ui%3A%20Token%20launchpad%20UI%20template%20inspired%20by%20pump.fun%3A%20dark%20theme%2C%20bonding%20curves%2C%20trading%20panel%2C%204) · [Share on Reddit](https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2Fnirholas%2Fsolana-launchpad-ui&title=solana-launchpad-ui%3A%20Token%20launchpad%20UI%20template%20inspired%20by%20pump.fun%3A%20dark%20theme%2C%20bonding%20curves%2C%20trading%20panel%2C%204)
+
+## Built for AI agents too
+
+Coding agents and LLM tooling can read this repo directly: [AGENTS.md](./AGENTS.md), [llms.txt](./llms.txt), [llms-full.txt](./llms-full.txt). Point an agent at `https://github.com/nirholas/solana-launchpad-ui` and it has the context it needs.
+
+## More from the same author
+
+- [All repositories by nirholas](https://github.com/nirholas/nirholas#readme): the full catalog, grouped by topic
+- [three.ws](https://three.ws): the platform for 3D AI agents with Solana wallets, a skill marketplace and x402 payments
+- Questions or ideas: [open an issue](https://github.com/nirholas/solana-launchpad-ui/issues) or [start a discussion](https://github.com/nirholas/solana-launchpad-ui/discussions)
+
+## Contributors
+
+[![Contributors](https://contrib.rocks/image?repo=nirholas/solana-launchpad-ui)](https://github.com/nirholas/solana-launchpad-ui/graphs/contributors)
+
+<!-- /three.ws:growth -->

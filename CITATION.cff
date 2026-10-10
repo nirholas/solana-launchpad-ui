@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it as below.
+title: "solana-launchpad-ui"
+abstract: "Token launchpad UI template inspired by pump.fun: dark theme, bonding curves, trading panel, 4 pages, pure HTML/CSS/JS, no dependencies."
+repository-code: "https://github.com/nirholas/solana-launchpad-ui"
+url: "https://three.ws"
+authors:
+  - name: three.ws
+    website: "https://three.ws"
