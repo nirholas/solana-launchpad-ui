@@ -91,6 +91,8 @@ a { color: inherit; text-decoration: none; }
 button { cursor: pointer; font-family: inherit; }
 img { display: block; max-width: 100%; }
 input, textarea, select { font-family: inherit; }
+/* Components set display: flex, which would otherwise beat the UA rule for [hidden]. */
+[hidden] { display: none !important; }
 
 /* ---------- Utility ---------- */
 .container { max-width: var(--max-w); margin: 0 auto; padding: 0 20px; }
