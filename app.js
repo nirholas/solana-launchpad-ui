@@ -271,8 +271,15 @@ function initCreate() {
 
   const file = document.getElementById('fileInput');
   const fileName = document.getElementById('fileName');
+  const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
   file.addEventListener('change', () => {
-    fileName.textContent = file.files.length ? file.files[0].name : 'PNG, JPG, GIF (max 5MB)';
+    const chosen = file.files[0];
+    if (chosen && chosen.size > MAX_IMAGE_BYTES) {
+      file.value = '';
+      fileName.textContent = `${chosen.name} is over 5MB. Choose a smaller image.`;
+    } else {
+      fileName.textContent = chosen ? chosen.name : 'PNG, JPG, GIF (max 5MB)';
+    }
   });
 
   const initialBuy = document.getElementById('initialBuy');
