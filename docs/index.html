@@ -1,127 +1,100 @@
 <!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>solana-launchpad-ui documentation</title>
-<meta name="description" content="Static design template clone of pump.fun for the Pump SDK project. **No blockchain functionality** — pure HTML/CSS/JS with mock data.">
+<meta name="description" content="Static UI template for a Solana token launchpad: four pages, a bonding-curve trade quote and mock data. No build step, no dependencies, no blockchain connection.">
 <meta property="og:title" content="solana-launchpad-ui documentation">
-<meta property="og:description" content="Static design template clone of pump.fun for the Pump SDK project. **No blockchain functionality** — pure HTML/CSS/JS with mock data.">
+<meta property="og:description" content="Static UI template for a Solana token launchpad with mock data and a tested bonding-curve module.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>&#128230;</text></svg>">
-<style>
-*,*::before,*::after{box-sizing:border-box}
-:root{--bg:#0b0d12;--panel:#12151d;--panel2:#161a24;--line:#242a38;--fg:#e7eaf3;
- --muted:#98a1b8;--accent:#6ea8fe;--accent2:#8b7cf6;--ok:#3ddc97;--radius:14px}
-@media(prefers-color-scheme:light){:root{--bg:#f7f8fb;--panel:#fff;--panel2:#f2f4f9;
- --line:#e3e7ef;--fg:#131722;--muted:#5b6479;--accent:#2563eb;--accent2:#7c3aed;--ok:#0f9d69}}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 ui-sans-serif,-apple-system,"Segoe UI",Inter,Roboto,sans-serif;-webkit-font-smoothing:antialiased}
-a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-header.site{position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);
- background:color-mix(in srgb,var(--bg) 86%,transparent);border-bottom:1px solid var(--line)}
-header.site .wrap{display:flex;align-items:center;gap:18px;height:60px}
-.brand{font-weight:700;font-size:17px;letter-spacing:-.02em;color:var(--fg)}
-.brand span{background:linear-gradient(92deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
-nav.top{display:flex;gap:16px;font-size:14px;margin-left:auto;flex-wrap:wrap}
-.hero{padding:64px 0 34px}
-.eyebrow{display:inline-block;border:1px solid var(--line);background:var(--panel);
- border-radius:999px;padding:5px 13px;font-size:12px;color:var(--muted);margin-bottom:16px}
-.hero h1{margin:0 0 14px;font-size:clamp(32px,5.2vw,52px);letter-spacing:-.035em;line-height:1.06}
-.hero .lede{margin:0;color:var(--muted);font-size:19px;max-width:66ch}
-.cta{display:flex;gap:11px;flex-wrap:wrap;margin-top:26px}
-.btn{background:var(--accent);color:#fff;border-radius:11px;padding:11px 19px;font-weight:600;font-size:15px}
-.btn:hover{text-decoration:none;filter:brightness(1.08)}
-.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
-.install{margin-top:26px;background:var(--panel);border:1px solid var(--line);border-radius:12px;
- padding:14px 16px;display:flex;align-items:center;gap:12px;max-width:640px}
-.install code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;flex:1;overflow-x:auto;white-space:nowrap}
-.copy{background:var(--panel2);border:1px solid var(--line);color:var(--muted);border-radius:8px;
- padding:6px 11px;font-size:12px;cursor:pointer;flex-shrink:0}
-.copy:hover{color:var(--fg);border-color:var(--accent)}
-section{padding:36px 0;border-top:1px solid var(--line)}
-h2.sec{margin:0 0 6px;font-size:24px;letter-spacing:-.02em}
-.sub{margin:0 0 22px;color:var(--muted)}
-.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
- transition:transform .16s ease,border-color .16s ease}
-.card:hover{transform:translateY(-2px);border-color:var(--accent)}
-.card h3{margin:0 0 7px;font-size:16px}
-.card p{margin:0;color:var(--muted);font-size:14px}
-pre{background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:15px;
- overflow-x:auto;font-size:13.5px;line-height:1.6}
-code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-:not(pre)>code{background:var(--panel2);border-radius:5px;padding:.15em .42em;font-size:.9em}
-table{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-x:auto}
-th,td{border:1px solid var(--line);padding:9px 12px;text-align:left}
-th{background:var(--panel2)}
-footer.site{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:13.5px}
-.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.badge{border:1px solid var(--line);border-radius:999px;padding:3px 11px;font-size:12px;color:var(--muted)}
-</style></head><body>
+<link rel="stylesheet" href="docs.css">
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
 <header class="site"><div class="wrap">
   <a class="brand" href="./index.html">solana-launchpad-ui <span>docs</span></a>
-  <nav class="top">
-    <a href="#start">Get started</a><a href="#examples">Examples</a>
-    <a href="./getting-started.md">Guide</a>
+  <nav class="top" aria-label="Sections">
+    <a href="#start">Run it</a>
+    <a href="#pages">Pages</a>
+    <a href="#curve">Bonding curve</a>
+    <a href="#customise">Customise</a>
     <a href="https://github.com/nirholas/solana-launchpad-ui">GitHub</a>
   </nav>
 </div></header>
-<div class="wrap">
-<section class="hero" style="border:0">
+
+<main class="wrap" id="content">
+<section class="hero">
   <span class="eyebrow">nirholas / solana-launchpad-ui</span>
   <h1>solana-launchpad-ui</h1>
-  <p class="lede">Static design template clone of pump.fun for the Pump SDK project. **No blockchain functionality** — pure HTML/CSS/JS with mock data.</p>
-  <div class="badges"></div>
+  <p class="lede">A static UI template for a Solana token launchpad in the style of pump.fun: a token board, a create form, a token page with a trade panel, and a profile. Plain HTML, CSS and ES modules with no build step and no dependencies.</p>
+  <p class="notice"><strong>Mock data only.</strong> Nothing in the template connects to a wallet, an RPC node or a blockchain, and it is not affiliated with pump.fun. Every token, price, trade and profile is invented.</p>
   <div class="cta">
-    <a class="btn" href="#start">Get started</a>
+    <a class="btn" href="#start">Run it locally</a>
     <a class="btn ghost" href="https://github.com/nirholas/solana-launchpad-ui">View source</a>
   </div>
-  <div class="install"><code>npx serve .</code><button class="copy" type="button">Copy</button></div>
 </section>
-
-<section id="features"><h2 class="sec">What it does</h2><p class="sub">Capabilities documented in this repository.</p><div class="grid"><div class="card"><h3>Pages</h3><p>See the <a href="https://github.com/nirholas/solana-launchpad-ui#readme">full documentation</a> for details.</p></div><div class="card"><h3>Live Demo</h3><p>See the <a href="https://github.com/nirholas/solana-launchpad-ui#readme">full documentation</a> for details.</p></div><div class="card"><h3>Running Locally</h3><p>See the <a href="https://github.com/nirholas/solana-launchpad-ui#readme">full documentation</a> for details.</p></div><div class="card"><h3>Features</h3><p>See the <a href="https://github.com/nirholas/solana-launchpad-ui#readme">full documentation</a> for details.</p></div><div class="card"><h3>Customization</h3><p>See the <a href="https://github.com/nirholas/solana-launchpad-ui#readme">full documentation</a> for details.</p></div><div class="card"><h3>Deploying</h3><p>See the <a href="https://github.com/nirholas/solana-launchpad-ui#readme">full documentation</a> for details.</p></div></div></section>
 
 <section id="start">
-  <h2 class="sec">Get started</h2>
-  <p class="sub">Install it, then run your first command.</p>
-  <pre><code>npx serve .</code></pre>
-  
-  <p><a href="./getting-started.md">Read the full getting started guide</a></p>
+  <h2 class="sec">Run it locally</h2>
+  <p class="sub">The pages load ES modules, which browsers refuse over <code>file://</code>, so serve the folder over HTTP.</p>
+  <div class="install"><code>npx serve .</code><button class="copy" type="button">Copy</button></div>
+  <p>Or, with Python: <code>python3 -m http.server 8000</code>, then open <code>http://localhost:8000</code>.</p>
+  <p>To run the checks (Node 20 or later, nothing to install):</p>
+  <div class="install"><code>npm run check &amp;&amp; npm test</code><button class="copy" type="button">Copy</button></div>
 </section>
 
-<section id="examples">
-  <h2 class="sec">Examples</h2>
-  <p class="sub">Taken directly from this repository's documentation.</p>
-  <pre><code>npx serve .
-# or
-python3 -m http.server 8000</code></pre><pre><code># Vercel
-vercel
+<section id="pages">
+  <h2 class="sec">Pages</h2>
+  <table>
+    <thead><tr><th scope="col">File</th><th scope="col">What it shows</th></tr></thead>
+    <tbody>
+      <tr><td><code>index.html</code></td><td>Token board: activity ticker (with pause), King of the Hill banner, view buttons and a card grid whose market caps follow each card's curve progress.</td></tr>
+      <tr><td><code>create.html</code></td><td>Token form: image picker, name, ticker, description, social links, option switches, and an initial-buy estimate at the launch price.</td></tr>
+      <tr><td><code>token.html</code></td><td>Token page: illustrative chart, thread, trades and holders tabs, token info, and a buy/sell panel that quotes from the bonding curve.</td></tr>
+      <tr><td><code>profile.html</code></td><td>Mock profile: created, held and favourite tokens, and an activity table.</td></tr>
+    </tbody>
+  </table>
+</section>
 
-# Netlify
-netlify deploy --dir=.
+<section id="curve">
+  <h2 class="sec">Bonding curve</h2>
+  <p class="sub"><code>curve.js</code> implements the constant-product curve the template illustrates.</p>
+  <ul>
+    <li>Virtual reserves start at 30 SOL and 1,073,000,000 tokens; 793,100,000 tokens are sold through the curve out of a 1,000,000,000 supply with 6 decimals.</li>
+    <li>A buy that adds <code>net</code> lamports after the 1% fee returns <code>tokensOut = vT - k / (vS + net)</code>, where <code>k = vS × vT</code>.</li>
+    <li>Amounts are BigInt base units and divisions round in the pool's favour. Buys past the end of the curve are capped at the remaining tokens.</li>
+    <li>Completing the curve takes about 85 SOL of deposits; the market cap runs from about 28 SOL at launch to about 411 SOL at completion.</li>
+  </ul>
+  <p>It illustrates the formula and is not a client for any deployed program. <code>test/curve.test.js</code> checks it against independently computed values.</p>
+</section>
 
-# GitHub Pages — enable Pages for this repository</code></pre>
-  <p><a href="./examples.md">More examples</a></p>
+<section id="customise">
+  <h2 class="sec">Customise</h2>
+  <ul>
+    <li><strong>Colours:</strong> the custom properties in <code>styles.css</code> <code>:root</code>. The text tokens are chosen to pass WCAG AA contrast on every background token; keep them that way.</li>
+    <li><strong>Data:</strong> <code>mock-data.js</code> holds the tokens, creators, the featured token's curve progress and the fixed <code>MOCK_SOL_USD</code> rate. Replace it with a real source when you wire up a backend.</li>
+    <li><strong>Static figures:</strong> the featured token's price, market cap and trades are also written into <code>token.html</code> and <code>index.html</code> for readers without JavaScript. <code>test/figures.test.js</code> fails if they no longer match the curve.</li>
+    <li><strong>Security headers:</strong> <code>vercel.json</code> sets a Content-Security-Policy that allows scripts only from the site itself. Keep scripts in files and markup free of inline handlers and style attributes.</li>
+  </ul>
 </section>
 
 <section id="more">
   <h2 class="sec">Reference</h2>
   <div class="grid">
-    <a class="card" href="https://github.com/nirholas/solana-launchpad-ui#readme"><h3>Full README</h3><p>Complete reference documentation.</p></a>
-    <a class="card" href="./getting-started.md"><h3>Getting started</h3><p>Install, configure, and run.</p></a>
-    <a class="card" href="./examples.md"><h3>Examples</h3><p>Copy-paste snippets that work.</p></a>
-    <a class="card" href="https://github.com/nirholas/solana-launchpad-ui/issues"><h3>Issues</h3><p>Report a bug or request a feature.</p></a>
+    <a class="card" href="https://github.com/nirholas/solana-launchpad-ui#readme"><h3>README</h3><p>Overview, features and deployment.</p></a>
+    <a class="card" href="https://github.com/nirholas/solana-launchpad-ui/blob/main/docs/getting-started.md"><h3>Getting started</h3><p>Clone, serve and check.</p></a>
+    <a class="card" href="https://github.com/nirholas/solana-launchpad-ui/blob/main/docs/examples.md"><h3>Examples</h3><p>Using the curve and format modules.</p></a>
+    <a class="card" href="https://github.com/nirholas/solana-launchpad-ui/issues"><h3>Issues</h3><p>Report a bug or request a change.</p></a>
   </div>
 </section>
-</div>
+</main>
+
 <footer class="site"><div class="wrap">
   <a href="https://github.com/nirholas/solana-launchpad-ui">github.com/nirholas/solana-launchpad-ui</a>
-  &middot; Documentation generated from this repository's own README and manifest.
+  &middot; All rights reserved; see the LICENSE file.
 </div></footer>
-<script>
-document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
-  const t=b.previousElementSibling.innerText.trim();
-  try{await navigator.clipboard.writeText(t);const o=b.innerText;b.innerText='Copied';
-      setTimeout(()=>b.innerText=o,1400);}catch(e){b.innerText='Press Ctrl+C';}
-}));
-</script></body></html>
+<script src="docs.js"></script>
+</body>
+</html>

@@ -7,7 +7,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "check": "for f in *.js; do node --check \"$f\" || exit 1; done",
+    "check": "for f in *.js docs/*.js test/*.js; do node --check \"$f\" || exit 1; done",
     "test": "node --test"
   }
 }
