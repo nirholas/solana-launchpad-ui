@@ -1,0 +1,13 @@
+{
+  "name": "solana-launchpad-ui",
+  "private": true,
+  "description": "Static token launchpad UI template with mock data. No build step and no runtime dependencies.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "check": "node --check app.js && node --check curve.js && node --check format.js",
+    "test": "node --test"
+  }
+}
