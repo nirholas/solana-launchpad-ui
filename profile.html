@@ -10,120 +10,110 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-page="profile">
 
   <!-- Header -->
   <header class="header">
     <div class="header-inner">
       <a href="index.html" class="logo">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true" focusable="false">
           <circle cx="18" cy="18" r="16" fill="url(#lg)" />
           <path d="M12 24 L18 8 L24 24 L18 19 Z" fill="#0e0e16" />
           <defs><linearGradient id="lg" x1="0" y1="0" x2="36" y2="36"><stop offset="0%" stop-color="#7bff69"/><stop offset="100%" stop-color="#00d4ff"/></linearGradient></defs>
         </svg>
         <span>pump<span class="logo-accent">.fun</span></span>
-        <span class="logo-crown">👑</span>
+        <span class="logo-crown" aria-hidden="true">👑</span>
       </a>
 
-      <nav class="nav">
+      <nav class="nav" aria-label="Primary">
         <a href="index.html" class="nav-link">Board</a>
         <a href="create.html" class="nav-link">Create</a>
         <a href="token.html" class="nav-link">Trade</a>
-        <a href="profile.html" class="nav-link active">Profile</a>
+        <a href="profile.html" class="nav-link" aria-current="page">Profile</a>
       </nav>
 
       <div class="header-search">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="text" placeholder="Search tokens...">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" placeholder="Search tokens..." aria-label="Search tokens">
       </div>
 
-      <button class="btn-wallet" style="background:var(--bg-card);color:var(--green);border:1px solid rgba(123,255,105,0.2);">
-        <span class="live-dot" style="width:6px;height:6px;"></span>
+      <button type="button" class="btn-wallet btn-wallet-connected" data-demo="Demo only: this mock profile is not a real wallet.">
+        <span class="live-dot live-dot-sm" aria-hidden="true"></span>
         <span>Fg7h...x9Kp</span>
       </button>
 
-      <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Menu">
+      <button type="button" class="mobile-toggle" id="mobileToggle" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
-  <div class="mobile-nav" id="mobileNav">
-    <a href="index.html">🏠 Board</a>
-    <a href="create.html">🪙 Create Token</a>
-    <a href="token.html">📈 Trade</a>
-    <a href="profile.html" class="active">👤 Profile</a>
-  </div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+    <a href="index.html"><span aria-hidden="true">🏠</span> Board</a>
+    <a href="create.html"><span aria-hidden="true">🪙</span> Create Token</a>
+    <a href="token.html"><span aria-hidden="true">📈</span> Trade</a>
+    <a href="profile.html" aria-current="page"><span aria-hidden="true">👤</span> Profile</a>
+  </nav>
 
-  <!-- Main -->
   <main class="main">
     <div class="container">
 
-      <!-- Profile header -->
       <div class="profile-header fade-in">
-        <div class="profile-avatar">
-          <div style="width:100%;height:100%;background:linear-gradient(135deg,#7bff69,#00d4ff);display:flex;align-items:center;justify-content:center;font-size:36px;">🦍</div>
-        </div>
+        <div class="profile-avatar grad-brand" aria-hidden="true">🦍</div>
         <div>
-          <div class="profile-name">degen_420.sol</div>
+          <h1 class="profile-name">degen_420.sol</h1>
           <div class="profile-addr">Fg7hK9mP2xLq8RnW5vBt3jYs6dAc4eNu7wZfX9KpQ1r</div>
           <div class="profile-stats-row">
-            <span class="profile-stat">Tokens created: <strong>12</strong></span>
-            <span class="profile-stat">Tokens held: <strong>47</strong></span>
-            <span class="profile-stat">Total P&L: <strong class="green">+$12,847</strong></span>
+            <span class="profile-stat">Tokens created: <strong>6</strong></span>
+            <span class="profile-stat">Tokens held: <strong>8</strong></span>
+            <span class="profile-stat">Total P&amp;L: <strong class="green">+$12,847</strong></span>
             <span class="profile-stat">Followers: <strong>284</strong></span>
           </div>
         </div>
       </div>
 
-      <!-- Profile tabs -->
-      <div class="tab-bar" style="margin-bottom:0;">
-        <button class="tab active" onclick="switchProfileTab(this, 'created')"><span class="tab-emoji">🪙</span> Created (12)</button>
-        <button class="tab" onclick="switchProfileTab(this, 'held')"><span class="tab-emoji">💰</span> Held (47)</button>
-        <button class="tab" onclick="switchProfileTab(this, 'activity')"><span class="tab-emoji">📋</span> Activity</button>
-        <button class="tab" onclick="switchProfileTab(this, 'favorites')"><span class="tab-emoji">⭐</span> Favorites</button>
+      <div class="tab-bar tab-bar-flush" id="profileTabs" role="tablist" aria-label="Profile sections">
+        <button type="button" class="tab" role="tab" id="tab-created" aria-selected="true" aria-controls="profile-created"><span class="tab-emoji" aria-hidden="true">🪙</span> Created (6)</button>
+        <button type="button" class="tab" role="tab" id="tab-held" aria-selected="false" aria-controls="profile-held" tabindex="-1"><span class="tab-emoji" aria-hidden="true">💰</span> Held (8)</button>
+        <button type="button" class="tab" role="tab" id="tab-activity" aria-selected="false" aria-controls="profile-activity" tabindex="-1"><span class="tab-emoji" aria-hidden="true">📋</span> Activity</button>
+        <button type="button" class="tab" role="tab" id="tab-favorites" aria-selected="false" aria-controls="profile-favorites" tabindex="-1"><span class="tab-emoji" aria-hidden="true">⭐</span> Favorites</button>
       </div>
 
-      <!-- Created tokens -->
-      <div id="profile-created">
+      <div id="profile-created" role="tabpanel" aria-labelledby="tab-created">
         <div class="token-grid" id="createdTokenGrid"></div>
       </div>
 
-      <!-- Held tokens (hidden) -->
-      <div id="profile-held" style="display:none;">
+      <div id="profile-held" role="tabpanel" aria-labelledby="tab-held" hidden>
         <div class="token-grid" id="heldTokenGrid"></div>
       </div>
 
-      <!-- Activity (hidden) -->
-      <div id="profile-activity" style="display:none;padding:20px 0;">
-        <div class="chart-panel">
-          <div style="padding:0;">
-            <table class="tx-table">
-              <thead>
-                <tr>
-                  <th>Action</th>
-                  <th>Token</th>
-                  <th>Amount</th>
-                  <th>Price</th>
-                  <th>Time</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td><span class="tx-type buy">BUY</span></td><td style="font-weight:600;">PEPE25</td><td>5.00 SOL</td><td>$0.000184</td><td>2m ago</td></tr>
-                <tr><td><span class="tx-type sell">SELL</span></td><td style="font-weight:600;">DOGE42</td><td>2.30 SOL</td><td>$0.000092</td><td>15m ago</td></tr>
-                <tr><td><span class="tx-type buy">BUY</span></td><td style="font-weight:600;">MOON</td><td>1.00 SOL</td><td>$0.000341</td><td>1h ago</td></tr>
-                <tr><td style="color:var(--purple);font-weight:700;font-size:12px;">🪙 CREATE</td><td style="font-weight:600;">WAGMI</td><td>—</td><td>—</td><td>2h ago</td></tr>
-                <tr><td><span class="tx-type buy">BUY</span></td><td style="font-weight:600;">SOLAN</td><td>3.50 SOL</td><td>$0.000127</td><td>3h ago</td></tr>
-                <tr><td><span class="tx-type sell">SELL</span></td><td style="font-weight:600;">CAT</td><td>8.00 SOL</td><td>$0.000563</td><td>5h ago</td></tr>
-                <tr><td><span class="tx-type buy">BUY</span></td><td style="font-weight:600;">BONK2</td><td>0.50 SOL</td><td>$0.000018</td><td>6h ago</td></tr>
-              </tbody>
-            </table>
-          </div>
+      <div id="profile-activity" class="profile-activity" role="tabpanel" aria-labelledby="tab-activity" tabindex="0" hidden>
+        <div class="chart-panel table-scroll">
+          <table class="tx-table">
+            <caption class="sr-only">Account activity (mock data)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Action</th>
+                <th scope="col">Token</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Price</th>
+                <th scope="col">Time</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr><td><span class="tx-type buy">BUY</span></td><td class="tx-token">PEPE25</td><td>5.00 SOL</td><td>$0.000184</td><td>2m ago</td></tr>
+                <tr><td><span class="tx-type sell">SELL</span></td><td class="tx-token">DOGE42</td><td>2.30 SOL</td><td>$0.000092</td><td>15m ago</td></tr>
+                <tr><td><span class="tx-type buy">BUY</span></td><td class="tx-token">MOON</td><td>1.00 SOL</td><td>$0.000341</td><td>1h ago</td></tr>
+                <tr><td><span class="tx-type create">CREATE</span></td><td class="tx-token">WAGMI</td><td>—</td><td>—</td><td>2h ago</td></tr>
+                <tr><td><span class="tx-type buy">BUY</span></td><td class="tx-token">SOLAN</td><td>3.50 SOL</td><td>$0.000127</td><td>3h ago</td></tr>
+                <tr><td><span class="tx-type sell">SELL</span></td><td class="tx-token">CAT</td><td>8.00 SOL</td><td>$0.000563</td><td>5h ago</td></tr>
+                <tr><td><span class="tx-type buy">BUY</span></td><td class="tx-token">BONK2</td><td>0.50 SOL</td><td>$0.000018</td><td>6h ago</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <!-- Favorites (hidden) -->
-      <div id="profile-favorites" style="display:none;">
+      <div id="profile-favorites" role="tabpanel" aria-labelledby="tab-favorites" hidden>
         <div class="token-grid" id="favTokenGrid"></div>
       </div>
 
@@ -143,20 +133,6 @@
     </div>
   </footer>
 
-  <script src="app.js"></script>
-  <script>
-    generateTokenGrid(6, 'createdTokenGrid');
-    generateTokenGrid(8, 'heldTokenGrid');
-    generateTokenGrid(4, 'favTokenGrid');
-
-    function switchProfileTab(btn, tab) {
-      document.querySelectorAll('.tab-bar .tab').forEach(t => t.classList.remove('active'));
-      btn.classList.add('active');
-      ['created','held','activity','favorites'].forEach(t => {
-        const el = document.getElementById('profile-' + t);
-        if (el) el.style.display = (t === tab) ? '' : 'none';
-      });
-    }
-  </script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>

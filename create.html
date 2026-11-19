@@ -10,50 +10,50 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-page="create">
 
   <!-- ========== HEADER ========== -->
   <header class="header">
     <div class="header-inner">
       <a href="index.html" class="logo">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true" focusable="false">
           <circle cx="18" cy="18" r="16" fill="url(#lg)" />
           <path d="M12 24 L18 8 L24 24 L18 19 Z" fill="#0e0e16" />
           <defs><linearGradient id="lg" x1="0" y1="0" x2="36" y2="36"><stop offset="0%" stop-color="#7bff69"/><stop offset="100%" stop-color="#00d4ff"/></linearGradient></defs>
         </svg>
         <span>pump<span class="logo-accent">.fun</span></span>
-        <span class="logo-crown">👑</span>
+        <span class="logo-crown" aria-hidden="true">👑</span>
       </a>
 
-      <nav class="nav">
+      <nav class="nav" aria-label="Primary">
         <a href="index.html" class="nav-link">Board</a>
-        <a href="create.html" class="nav-link active">Create</a>
+        <a href="create.html" class="nav-link" aria-current="page">Create</a>
         <a href="token.html" class="nav-link">Trade</a>
         <a href="profile.html" class="nav-link">Profile</a>
       </nav>
 
       <div class="header-search">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="text" placeholder="Search tokens..." aria-label="Search tokens">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" placeholder="Search tokens..." aria-label="Search tokens">
       </div>
 
-      <button class="btn-wallet">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><circle cx="18" cy="16" r="1"/></svg>
+      <button type="button" class="btn-wallet" data-demo="Demo only: wallet connection is not part of this template.">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><circle cx="18" cy="16" r="1"/></svg>
         <span>Connect Wallet</span>
       </button>
 
-      <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Menu">
+      <button type="button" class="mobile-toggle" id="mobileToggle" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
-  <div class="mobile-nav" id="mobileNav">
-    <a href="index.html">🏠 Board</a>
-    <a href="create.html" class="active">🪙 Create Token</a>
-    <a href="token.html">📈 Trade</a>
-    <a href="profile.html">👤 Profile</a>
-  </div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+    <a href="index.html"><span aria-hidden="true">🏠</span> Board</a>
+    <a href="create.html" aria-current="page"><span aria-hidden="true">🪙</span> Create Token</a>
+    <a href="token.html"><span aria-hidden="true">📈</span> Trade</a>
+    <a href="profile.html"><span aria-hidden="true">👤</span> Profile</a>
+  </nav>
 
   <!-- ========== MAIN ========== -->
   <main class="main">
@@ -61,101 +61,94 @@
       <h1 class="create-title">🪙 Create a New Token</h1>
       <p class="create-subtitle">Launch your token on the bonding curve. No presale, no team allocation. Fair launch only.</p>
 
-      <form class="create-form" onsubmit="event.preventDefault(); alert('Token creation would happen here!');">
+      <form class="create-form" id="createForm">
 
-        <!-- Image upload -->
         <div class="form-group">
-          <label class="form-label">Token Image</label>
-          <div class="form-upload" onclick="document.getElementById('fileInput').click()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span class="form-label" id="imageLabel">Token Image</span>
+          <input type="file" id="fileInput" class="form-upload-input" accept="image/png,image/jpeg,image/gif" aria-labelledby="imageLabel" aria-describedby="fileName">
+          <label class="form-upload" for="fileInput">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
             <span>Upload image</span>
-            <span style="font-size:12px;color:var(--text-dim);">PNG, JPG, GIF (max 5MB)</span>
-          </div>
-          <input type="file" id="fileInput" accept="image/*" style="display:none">
+            <span class="form-upload-hint" id="fileName">PNG, JPG, GIF (max 5MB)</span>
+          </label>
         </div>
 
-        <!-- Name -->
         <div class="form-group">
           <label class="form-label" for="tokenName">Name *</label>
-          <input type="text" id="tokenName" class="form-input" placeholder="e.g. PepeCoin" maxlength="32" required>
-          <p class="form-hint">Max 32 characters</p>
+          <input type="text" id="tokenName" name="name" class="form-input" placeholder="e.g. PepeCoin" maxlength="32" required aria-describedby="tokenNameHint">
+          <p class="form-hint" id="tokenNameHint">Max 32 characters</p>
         </div>
 
-        <!-- Ticker -->
         <div class="form-group">
           <label class="form-label" for="tokenTicker">Ticker *</label>
-          <input type="text" id="tokenTicker" class="form-input" placeholder="e.g. PEPE" maxlength="10" required style="text-transform:uppercase;">
-          <p class="form-hint">Max 10 characters, no spaces</p>
+          <input type="text" id="tokenTicker" name="ticker" class="form-input form-input-upper" placeholder="e.g. PEPE" maxlength="10" pattern="\S+" required aria-describedby="tokenTickerHint">
+          <p class="form-hint" id="tokenTickerHint">Max 10 characters, no spaces</p>
         </div>
 
-        <!-- Description -->
         <div class="form-group">
           <label class="form-label" for="tokenDesc">Description</label>
-          <textarea id="tokenDesc" class="form-input" placeholder="Tell people what your token is about..." rows="4"></textarea>
+          <textarea id="tokenDesc" name="description" class="form-input" placeholder="Tell people what your token is about..." rows="4"></textarea>
         </div>
 
-        <!-- Show more options -->
-        <button type="button" class="show-more-btn" onclick="toggleAdvanced()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="advancedArrow"><path d="m6 9 6 6 6-6"/></svg>
+        <button type="button" class="show-more-btn" id="advancedToggle" aria-expanded="false" aria-controls="advancedOptions">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
           Show more options
         </button>
 
-        <div id="advancedOptions" style="display:none;">
-          <!-- Social links -->
-          <div class="form-group" style="margin-bottom:20px;">
-            <label class="form-label">Social Links</label>
+        <div id="advancedOptions" class="advanced-options" hidden>
+          <fieldset class="form-group form-fieldset">
+            <legend class="form-label">Social Links</legend>
             <div class="form-row">
-              <input type="url" class="form-input" placeholder="Twitter URL">
-              <input type="url" class="form-input" placeholder="Telegram URL">
+              <label class="sr-only" for="linkTwitter">Twitter URL</label>
+              <input type="url" id="linkTwitter" name="twitter" class="form-input" placeholder="Twitter URL">
+              <label class="sr-only" for="linkTelegram">Telegram URL</label>
+              <input type="url" id="linkTelegram" name="telegram" class="form-input" placeholder="Telegram URL">
             </div>
-            <div class="form-row" style="margin-top:12px;">
-              <input type="url" class="form-input" placeholder="Website URL">
-              <input type="url" class="form-input" placeholder="Discord URL">
+            <div class="form-row">
+              <label class="sr-only" for="linkWebsite">Website URL</label>
+              <input type="url" id="linkWebsite" name="website" class="form-input" placeholder="Website URL">
+              <label class="sr-only" for="linkDiscord">Discord URL</label>
+              <input type="url" id="linkDiscord" name="discord" class="form-input" placeholder="Discord URL">
             </div>
-          </div>
+          </fieldset>
 
-          <!-- Mayhem Mode -->
-          <div class="form-switch-row" style="margin-bottom:12px;">
-            <div>
-              <div class="form-switch-label">🔥 Mayhem Mode</div>
-              <div class="form-switch-desc">Higher volatility, wilder price swings</div>
-            </div>
-            <div class="form-switch" onclick="this.classList.toggle('active')"></div>
-          </div>
+          <label class="form-switch-row">
+            <span>
+              <span class="form-switch-label">🔥 Mayhem Mode</span>
+              <span class="form-switch-desc">Higher volatility, wilder price swings</span>
+            </span>
+            <input type="checkbox" class="form-switch" name="mayhem" role="switch">
+          </label>
 
-          <!-- Creator Fee -->
-          <div class="form-switch-row" style="margin-bottom:12px;">
-            <div>
-              <div class="form-switch-label">💰 Creator Fees</div>
-              <div class="form-switch-desc">Earn fees from trades on your token</div>
-            </div>
-            <div class="form-switch" onclick="this.classList.toggle('active')"></div>
-          </div>
+          <label class="form-switch-row">
+            <span>
+              <span class="form-switch-label">💰 Creator Fees</span>
+              <span class="form-switch-desc">Earn fees from trades on your token</span>
+            </span>
+            <input type="checkbox" class="form-switch" name="creatorFees" role="switch">
+          </label>
 
-          <!-- Cashback -->
-          <div class="form-switch-row">
-            <div>
-              <div class="form-switch-label">🎁 Cashback Rewards</div>
-              <div class="form-switch-desc">Buyers earn cashback on trades</div>
-            </div>
-            <div class="form-switch" onclick="this.classList.toggle('active')"></div>
-          </div>
+          <label class="form-switch-row">
+            <span>
+              <span class="form-switch-label">🎁 Cashback Rewards</span>
+              <span class="form-switch-desc">Buyers earn cashback on trades</span>
+            </span>
+            <input type="checkbox" class="form-switch" name="cashback" role="switch">
+          </label>
         </div>
 
-        <!-- Initial buy -->
-        <div class="form-group" style="margin-top:8px;">
-          <label class="form-label">Initial Buy (Optional)</label>
+        <div class="form-group">
+          <label class="form-label" for="initialBuy">Initial Buy (Optional)</label>
           <div class="trade-input-wrap">
-            <input type="number" class="trade-input" placeholder="0.0" step="0.01" min="0">
+            <input type="text" inputmode="decimal" id="initialBuy" name="initialBuy" class="trade-input" placeholder="0.0" autocomplete="off" aria-describedby="initialBuyHint">
             <div class="trade-input-suffix">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#9945FF"/><circle cx="12" cy="12" r="6" fill="url(#sol)"/><defs><linearGradient id="sol" x1="6" y1="6" x2="18" y2="18"><stop offset="0%" stop-color="#00FFA3"/><stop offset="100%" stop-color="#DC1FFF"/></linearGradient></defs></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="#9945FF"/><circle cx="12" cy="12" r="6" fill="url(#sol)"/><defs><linearGradient id="sol" x1="6" y1="6" x2="18" y2="18"><stop offset="0%" stop-color="#00FFA3"/><stop offset="100%" stop-color="#DC1FFF"/></linearGradient></defs></svg>
               SOL
             </div>
           </div>
-          <p class="form-hint">Optional: Buy some of your own token at launch. Tip: keeps your skin in the game.</p>
+          <p class="form-hint" id="initialBuyHint">Optional: Buy some of your own token at launch. Tip: keeps your skin in the game.</p>
         </div>
 
-        <!-- Submit -->
         <button type="submit" class="create-submit">🚀 Create Token</button>
         <p class="create-cost-note">Cost: ~0.02 SOL (rent + fees)</p>
       </form>
@@ -175,19 +168,6 @@
     </div>
   </footer>
 
-  <script src="app.js"></script>
-  <script>
-    function toggleAdvanced() {
-      const el = document.getElementById('advancedOptions');
-      const arrow = document.getElementById('advancedArrow');
-      if (el.style.display === 'none') {
-        el.style.display = 'block';
-        arrow.style.transform = 'rotate(180deg)';
-      } else {
-        el.style.display = 'none';
-        arrow.style.transform = '';
-      }
-    }
-  </script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>
