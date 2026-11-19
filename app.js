@@ -155,7 +155,11 @@ function tokenCard(token, { index, king = false, creator = randItem(CREATORS) })
     ? h('span', { class: 'token-card-badge king' }, '👑 King')
     : rand(0, 5) === 0 && h('span', { class: 'token-card-badge' }, '✨ New');
 
-  return h('article', { class: 'token-card fade-in', style: { animationDelay: `${index * 50}ms` } },
+  return h('article', {
+    class: 'token-card fade-in',
+    style: { animationDelay: `${index * 50}ms` },
+    'data-search': `${token.name} ${token.ticker}`.toLowerCase(),
+  },
     badge,
     h('div', { class: 'token-card-img', style: gradient(token.color), 'aria-hidden': 'true' }, token.emoji),
     h('div', { class: 'token-card-body' },
@@ -200,6 +204,34 @@ function appendCards(grid, count, { king = false, creator } = {}) {
   grid.append(...tokens.map((token, index) => tokenCard(token, { index, king: king && index === 0, creator })));
 }
 
+// ── Search ──
+
+/**
+ * The header search is a GET form to the board. On the board it filters
+ * the loaded cards as you type; returns the function that reapplies it.
+ */
+function initBoardSearch(grid) {
+  const input = document.querySelector('.header-search input');
+  const noResults = document.getElementById('noResults');
+  input.value = new URLSearchParams(location.search).get('q') ?? '';
+
+  const apply = () => {
+    const query = input.value.trim().toLowerCase();
+    let shown = 0;
+    for (const card of grid.children) {
+      card.hidden = !card.dataset.search.includes(query);
+      if (!card.hidden) shown++;
+    }
+    noResults.hidden = shown > 0;
+  };
+  input.addEventListener('input', apply);
+  input.form.addEventListener('submit', e => {
+    e.preventDefault();
+    apply();
+  });
+  return apply;
+}
+
 // ── Pages ──
 
 function initBoard() {
@@ -213,13 +245,19 @@ function initBoard() {
   });
 
   const grid = document.getElementById('tokenGrid');
-  appendCards(grid, 12, { king: true });
+  const applySearch = initBoardSearch(grid);
+  appendCards(grid, TOKENS.length, { king: true });
+  applySearch();
 
   initPressedGroup(document.getElementById('boardTabs'), () => {
     grid.replaceChildren();
-    appendCards(grid, 12, { king: true });
+    appendCards(grid, TOKENS.length, { king: true });
+    applySearch();
   });
-  document.getElementById('loadMore').addEventListener('click', () => appendCards(grid, 8));
+  document.getElementById('loadMore').addEventListener('click', () => {
+    appendCards(grid, 8);
+    applySearch();
+  });
 }
 
 function initCreate() {

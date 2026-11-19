@@ -1204,6 +1204,7 @@ textarea.form-input { min-height: 100px; resize: vertical; line-height: 1.5; }
 .btn-ghost:hover { background: rgba(255,255,255,0.08); color: var(--text); }
 .btn-sm { padding: 5px 12px; font-size: 12px; }
 .load-more { text-align: center; padding: 32px 0; }
+.no-results { padding: 32px 0; text-align: center; color: var(--text-secondary); }
 
 /* ================================================================
    FOOTER
