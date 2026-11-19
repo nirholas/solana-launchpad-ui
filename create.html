@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Token — pump.fun</title>
+  <title>Create Token · Solana Launchpad UI (demo)</title>
+  <meta name="description" content="Token creation form from a static launchpad UI template. Nothing is submitted anywhere.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🟢</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,6 +59,7 @@
 
   <!-- ========== MAIN ========== -->
   <main class="main" id="main" tabindex="-1">
+    <p class="demo-notice" role="note"><strong>Demo template.</strong> Every token, price, trade and profile on this site is mock data. Nothing connects to a wallet or a blockchain.</p>
     <div class="create-page fade-in">
       <h1 class="create-title">🪙 Create a New Token</h1>
       <p class="create-subtitle">Launch your token on the bonding curve. No presale, no team allocation. Fair launch only.</p>
@@ -152,21 +154,19 @@
         </div>
 
         <button type="submit" class="create-submit">🚀 Create Token</button>
-        <p class="create-cost-note">Cost: ~0.02 SOL (rent + fees)</p>
+        <p class="create-cost-note">Typical cost on a live launchpad: ~0.02 SOL (rent + fees). This demo charges nothing.</p>
       </form>
     </div>
   </main>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-links">
-        <a href="#">Docs</a>
-        <a href="#">GitHub</a>
-        <a href="#">Twitter</a>
-        <a href="#">Telegram</a>
-      </div>
-      <div class="footer-copy">© 2025 pump.fun — built on Solana</div>
+      <nav class="footer-links" aria-label="Project">
+        <a href="docs/">Docs</a>
+        <a href="https://github.com/nirholas/solana-launchpad-ui">GitHub</a>
+        <a href="https://github.com/nirholas/solana-launchpad-ui/blob/main/LICENSE">License</a>
+      </nav>
+      <p class="footer-copy">UI template with mock data. Not affiliated with pump.fun.</p>
     </div>
   </footer>
 

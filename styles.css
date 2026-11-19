@@ -267,6 +267,16 @@ input, textarea, select { font-family: inherit; }
    ================================================================ */
 .main { padding-top: var(--header-h); min-height: 100vh; }
 
+.demo-notice {
+  padding: 10px 20px;
+  background: rgba(250, 204, 21, 0.08);
+  border-bottom: 1px solid rgba(250, 204, 21, 0.2);
+  color: var(--text-secondary);
+  font-size: 13px;
+  text-align: center;
+}
+.demo-notice strong { color: var(--yellow); }
+
 /* ================================================================
    TAB BAR / FILTERS
    ================================================================ */
