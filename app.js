@@ -110,29 +110,38 @@ function applyFills(root = document) {
 
 // ── Activity ticker ──
 
-function tickerItem() {
-  const token = randItem(TOKENS);
-  const action = randItem(['bought', 'sold', 'created']);
+function randomActivity() {
+  return {
+    token: randItem(TOKENS),
+    user: randItem(CREATORS),
+    action: randItem(['bought', 'sold', 'created']),
+    sol: (Math.random() * 19.9 + 0.1).toFixed(2),
+    age: rand(1, 59),
+  };
+}
+
+function tickerItem({ token, user, action, sol, age }) {
   const cls = action === 'bought' ? 'green' : action === 'sold' ? 'red' : 'gradient-text';
   return h('div', { class: 'ticker-item' },
     h('span', { class: 'ticker-avatar', style: gradient(token.color), 'aria-hidden': 'true' }, token.emoji),
-    h('span', { class: 'ticker-user' }, randItem(CREATORS)),
+    h('span', { class: 'ticker-user' }, user),
     h('span', { class: cls }, action),
-    action !== 'created' && h('span', {}, `${(Math.random() * 19.9 + 0.1).toFixed(2)} SOL of`),
+    action !== 'created' && h('span', {}, `${sol} SOL of`),
     h('span', { class: 'ticker-token' }, token.name),
-    h('span', { class: 'ticker-age' }, `${rand(1, 59)}s ago`),
+    h('span', { class: 'ticker-age' }, `${age}s ago`),
   );
 }
 
 function renderTicker(track) {
-  const items = Array.from({ length: 30 }, tickerItem);
-  // The second copy only exists so the scroll loops seamlessly.
-  const copies = items.map(item => {
-    const copy = item.cloneNode(true);
+  const activity = Array.from({ length: 30 }, randomActivity);
+  // The second copy only exists so the scroll loops seamlessly. It is built
+  // afresh rather than cloned: a cloned style attribute can trip the CSP.
+  const copies = activity.map(item => {
+    const copy = tickerItem(item);
     copy.setAttribute('aria-hidden', 'true');
     return copy;
   });
-  track.replaceChildren(...items, ...copies);
+  track.replaceChildren(...activity.map(tickerItem), ...copies);
 }
 
 // ── Token cards ──
