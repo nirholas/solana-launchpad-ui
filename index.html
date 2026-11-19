@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body data-page="board">
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- ========== HEADER ========== -->
   <header class="header">
@@ -40,7 +41,7 @@
 
       <button type="button" class="btn-wallet" data-demo="Demo only: wallet connection is not part of this template.">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><circle cx="18" cy="16" r="1"/></svg>
-        <span>Connect Wallet</span>
+        <span class="btn-wallet-label">Connect Wallet</span>
       </button>
 
       <button type="button" class="mobile-toggle" id="mobileToggle" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav">
@@ -57,21 +58,21 @@
   </nav>
 
   <!-- ========== MAIN ========== -->
-  <main class="main">
+  <main class="main" id="main" tabindex="-1">
 
-    <!-- Activity ticker -->
-    <div class="ticker-bar">
+    <section class="ticker-bar" id="ticker" aria-label="Recent activity (mock data)">
       <div class="ticker-track" id="tickerTrack"></div>
-    </div>
+      <button type="button" class="ticker-toggle" id="tickerToggle" aria-pressed="false">Pause</button>
+    </section>
 
     <div class="container">
+      <h1 class="sr-only">Token board</h1>
 
-      <!-- King of the Hill -->
       <div class="king-banner fade-in">
         <div class="king-banner-img grad-violet" aria-hidden="true">🐸</div>
         <div class="king-banner-info">
           <div class="king-banner-label">👑 King of the Hill</div>
-          <div class="king-banner-name">PEPE2025 <span class="king-banner-ticker">$PEPE25</span></div>
+          <h2 class="king-banner-name">PEPE2025 <span class="king-banner-ticker">$PEPE25</span></h2>
           <div class="king-banner-stats">
             <span>Market cap: <strong class="green">$847K</strong></span>
             <span>24h vol: <strong>$2.1M</strong></span>
@@ -81,7 +82,7 @@
         </div>
       </div>
 
-      <!-- Tabs -->
+      <h2 class="sr-only">Tokens</h2>
       <div class="tab-bar">
         <div class="tab-group" id="boardTabs" role="group" aria-label="Board view">
           <button type="button" class="tab" aria-pressed="true"><span class="tab-emoji" aria-hidden="true">🖥️</span> Terminal</button>

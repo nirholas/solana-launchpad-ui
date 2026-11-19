@@ -190,6 +190,13 @@ function appendCards(grid, count, { king = false, creator } = {}) {
 
 function initBoard() {
   renderTicker(document.getElementById('tickerTrack'));
+  const tickerToggle = document.getElementById('tickerToggle');
+  tickerToggle.addEventListener('click', () => {
+    const paused = tickerToggle.getAttribute('aria-pressed') !== 'true';
+    tickerToggle.setAttribute('aria-pressed', String(paused));
+    tickerToggle.textContent = paused ? 'Play' : 'Pause';
+    document.getElementById('ticker').classList.toggle('paused', paused);
+  });
 
   const grid = document.getElementById('tokenGrid');
   appendCards(grid, 12, { king: true });

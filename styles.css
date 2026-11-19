@@ -27,14 +27,18 @@
   --purple-dim: #7c3aed;
   --yellow: #facc15;
   --red: #ef4444;
+  --red-strong: #dc2626;     /* sell surfaces: 4.8:1 with white text */
+  --red-text: #f87171;       /* red text on tinted red chips */
+  --purple-text: #c084fc;
   --pink: #f472b6;
   --orange: #fb923c;
   --blue: #3b82f6;
 
   --text: #f1f1f7;
   --text-secondary: #9d9daf;
-  --text-muted: #5a5a70;
-  --text-dim: #44445a;
+  /* Both pass WCAG AA (4.5:1) on every background token below. */
+  --text-muted: #8b8ba3;
+  --text-dim: #82829a;
 
   --border: #2a2a3e;
   --border-hover: #3a3a52;
@@ -56,6 +60,25 @@
 }
 
 html { scroll-behavior: smooth; }
+
+/* ---------- Focus ---------- */
+:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  top: 8px; left: 8px;
+  z-index: 2000;
+  padding: 10px 16px;
+  background: var(--green);
+  color: var(--bg);
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: none; }
 
 body {
   font-family: var(--font);
@@ -184,6 +207,7 @@ input, textarea, select { font-family: inherit; }
   transition: border-color var(--transition);
 }
 .header-search:focus-within { border-color: var(--green); }
+.header-search:has(input:focus-visible) { outline: 2px solid var(--green); outline-offset: 2px; }
 .header-search svg { flex-shrink: 0; color: var(--text-muted); }
 .header-search input {
   flex: 1;
@@ -211,6 +235,7 @@ input, textarea, select { font-family: inherit; }
   transition: all var(--transition);
   white-space: nowrap;
 }
+.btn-wallet-label { display: inline; }
 .btn-wallet:hover { transform: translateY(-1px); box-shadow: 0 4px 20px var(--green-glow); }
 .btn-wallet-connected {
   background: var(--bg-card);
@@ -313,11 +338,29 @@ input, textarea, select { font-family: inherit; }
    ACTIVITY TICKER
    ================================================================ */
 .ticker-bar {
+  position: relative;
   background: var(--bg-secondary);
   border-bottom: 1px solid var(--border);
   padding: 10px 0;
   overflow: hidden;
 }
+.ticker-bar:hover .ticker-track,
+.ticker-bar:focus-within .ticker-track,
+.ticker-bar.paused .ticker-track { animation-play-state: paused; }
+.ticker-toggle {
+  position: absolute;
+  top: 50%; right: 12px;
+  transform: translateY(-50%);
+  z-index: 1;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+}
+.ticker-toggle:hover { color: var(--text); }
 .ticker-track {
   display: flex;
   gap: 32px;
@@ -440,6 +483,8 @@ input, textarea, select { font-family: inherit; }
   inset: 0;
   z-index: 1;
 }
+.token-card-link:focus-visible { outline: none; }
+.token-card:has(.token-card-link:focus-visible) { outline: 2px solid var(--green); outline-offset: 2px; }
 .token-card-ticker {
   font-size: 12px;
   font-weight: 600;
@@ -685,7 +730,6 @@ input, textarea, select { font-family: inherit; }
   padding: 10px 14px;
   color: var(--text);
   font-size: 14px;
-  outline: none;
   transition: border-color var(--transition);
 }
 .thread-input:focus { border-color: var(--green); }
@@ -739,7 +783,7 @@ input, textarea, select { font-family: inherit; }
   transition: all var(--transition);
 }
 .trade-toggle-btn[data-mode="buy"][aria-pressed="true"] { background: var(--green); color: var(--bg); }
-.trade-toggle-btn[data-mode="sell"][aria-pressed="true"] { background: var(--red); color: white; }
+.trade-toggle-btn[data-mode="sell"][aria-pressed="true"] { background: var(--red-strong); color: white; }
 
 /* Amount input */
 .trade-input-group { margin-bottom: 12px; }
@@ -762,6 +806,7 @@ input, textarea, select { font-family: inherit; }
   transition: border-color var(--transition);
 }
 .trade-input-wrap:focus-within { border-color: var(--green); }
+.trade-input-wrap:has(input:focus-visible) { outline: 2px solid var(--green); outline-offset: 2px; }
 .trade-input {
   flex: 1;
   background: none;
@@ -837,7 +882,7 @@ input, textarea, select { font-family: inherit; }
 }
 .trade-submit.buy-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 24px var(--green-glow); }
 .trade-submit.sell-btn {
-  background: linear-gradient(135deg, #dc2626, var(--red));
+  background: var(--red-strong);
   color: white;
 }
 
@@ -938,7 +983,6 @@ input, textarea, select { font-family: inherit; }
   padding: 12px 14px;
   color: var(--text);
   font-size: 15px;
-  outline: none;
   transition: border-color var(--transition);
 }
 .form-input:focus { border-color: var(--green); }
@@ -973,6 +1017,7 @@ textarea.form-input { min-height: 100px; resize: vertical; line-height: 1.5; }
   width: 1px; height: 1px;
   opacity: 0;
 }
+.form-upload-input:focus-visible + .form-upload { outline: 2px solid var(--green); outline-offset: 2px; }
 
 .form-fieldset { border: none; min-width: 0; margin-bottom: 20px; }
 .form-row {
@@ -1179,7 +1224,14 @@ textarea.form-input { min-height: 100px; resize: vertical; line-height: 1.5; }
   .nav { display: none; }
   .mobile-toggle { display: flex; }
   .header-search { max-width: none; }
-  .btn-wallet span { display: none; }
+  /* Icon-only on small screens; the label stays available to screen readers. */
+  .btn-wallet-label {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
   .token-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
   .king-banner { flex-direction: column; text-align: center; }
   .king-banner-stats { justify-content: center; }
@@ -1309,8 +1361,24 @@ textarea.form-input { min-height: 100px; resize: vertical; line-height: 1.5; }
   display: inline-block;
 }
 .tx-type.buy { color: var(--green); background: var(--green-bg); }
-.tx-type.sell { color: var(--red); background: rgba(239,68,68,0.08); }
-.tx-type.create { color: var(--purple); background: rgba(168,85,247,0.08); }
+.tx-type.sell { color: var(--red-text); background: rgba(239,68,68,0.08); }
+.tx-type.create { color: var(--purple-text); background: rgba(168,85,247,0.08); }
 .tx-addr { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
 .tx-token { font-weight: 600; }
 .table-scroll { overflow-x: auto; }
+
+/* ================================================================
+   REDUCED MOTION
+   ================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  /* A still ticker becomes a scrollable row instead. */
+  .ticker-bar { overflow-x: auto; }
+  .ticker-track { animation: none; }
+  .ticker-toggle { display: none; }
+}
