@@ -1,9 +1,5 @@
 /* ================================================================
-   PumpFun Clone — Design Template
-   ================================================================
-   Color palette: #7bff69 green (matches pump.fun UI)
-   See also: website/styles.css (#00ff88 — SDK docs site)
-             site/pump.css (#5be45b — PumpOS desktop)
+   Solana launchpad UI template. Theme tokens live in :root below.
    ================================================================ */
 
 /* ---------- Reset & Variables ---------- */
@@ -115,7 +111,6 @@ input, textarea, select { font-family: inherit; }
 }
 .green { color: var(--green); }
 .red { color: var(--red); }
-.yellow { color: var(--yellow); }
 
 /* Emoji avatars on a gradient (token images, user avatars) */
 .ticker-avatar, .token-card-img, .token-card-avatar, .king-banner-img,
@@ -518,9 +513,6 @@ input, textarea, select { font-family: inherit; }
 }
 
 /* Bonding curve progress */
-.bonding-progress {
-  margin-top: auto;
-}
 .bonding-progress-header {
   display: flex;
   align-items: center;
@@ -680,7 +672,7 @@ input, textarea, select { font-family: inherit; }
   height: 100%;
 }
 
-/* Token info sidebar tabs */
+/* Thread / Trades / Holders tabs */
 .chart-below-tabs {
   display: flex;
   border-bottom: 1px solid var(--border);
@@ -1326,7 +1318,6 @@ textarea.form-input { min-height: 100px; resize: vertical; line-height: 1.5; }
   0%, 100% { box-shadow: 0 0 0 0 var(--green-glow); }
   50% { box-shadow: 0 0 0 8px transparent; }
 }
-.pulse-green { animation: pulse-green 2s ease infinite; }
 
 @keyframes shimmer {
   0% { background-position: -200% 0; }
