@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  parseUnits, toUnits, formatUsdCompact, formatUsd, formatPrice,
+  parseUnits, formatUnits, toUnits, formatUsdCompact, formatUsd, formatPrice,
   formatTokens, formatSol, formatPercent,
 } from '../format.js';
 
@@ -17,6 +17,15 @@ test('parseUnits converts decimal strings without floating point error', () => {
 test('parseUnits rejects anything that is not a plain non-negative decimal', () => {
   for (const bad of ['', '.', '-1', '1e3', 'abc', '1.2.3', '0x10', '1,000']) {
     assert.equal(parseUnits(bad, 9), null, bad);
+  }
+});
+
+test('formatUnits is the exact inverse of parseUnits', () => {
+  assert.equal(formatUnits(1_500_000_000n, 9), '1.5');
+  assert.equal(formatUnits(12_000_000n, 6), '12');
+  assert.equal(formatUnits(1n, 6), '0.000001');
+  for (const text of ['0.1', '42', '0.000123', '9007199254740993.5']) {
+    assert.equal(formatUnits(parseUnits(text, 6), 6), text);
   }
 });
 

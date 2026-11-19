@@ -4,8 +4,12 @@
    Markup is built with DOM APIs and textContent, never innerHTML.
    ================================================================ */
 
-import { TOKENS, CREATORS, CREATOR_COLORS, rand, randItem, shuffle } from './mock-data.js';
-import { formatUsdCompact } from './format.js';
+import {
+  TOKENS, CREATORS, CREATOR_COLORS, FEATURED, WALLET, MOCK_SOL_USD, rand, randItem, shuffle,
+} from './mock-data.js';
+import { TOKEN_DECIMALS, initialCurve, curveAtProgress, marketCapSol, quoteBuy } from './curve.js';
+import { parseUnits, formatUnits, toUnits, formatUsdCompact, formatTokens } from './format.js';
+import { SOL_DECIMALS, tradeQuote } from './trade-quote.js';
 
 // ── DOM helpers ──
 
@@ -134,9 +138,10 @@ function renderTicker(track) {
 // ── Token cards ──
 
 function tokenCard(token, { index, king = false, creator = randItem(CREATORS) }) {
-  const mcap = rand(5000, 900000);
-  const progress = rand(5, 98);
-  const change = rand(-30, 500);
+  // Market cap is whatever the curve gives at the card's progress.
+  const progress = king ? Math.round(FEATURED.progress * 100) : rand(5, 98);
+  const mcap = marketCapSol(curveAtProgress(progress / 100)) * MOCK_SOL_USD;
+  const change = king ? FEATURED.change24h : rand(-30, 500);
   const badge = king
     ? h('span', { class: 'token-card-badge king' }, '👑 King')
     : rand(0, 5) === 0 && h('span', { class: 'token-card-badge' }, '✨ New');
@@ -223,6 +228,18 @@ function initCreate() {
     fileName.textContent = file.files.length ? file.files[0].name : 'PNG, JPG, GIF (max 5MB)';
   });
 
+  const initialBuy = document.getElementById('initialBuy');
+  const initialBuyQuote = document.getElementById('initialBuyQuote');
+  initialBuy.addEventListener('input', () => {
+    const lamports = parseUnits(initialBuy.value, SOL_DECIMALS);
+    if (!initialBuy.value.trim()) initialBuyQuote.textContent = '';
+    else if (lamports === null) initialBuyQuote.textContent = 'Enter an amount such as 0.5.';
+    else {
+      const q = quoteBuy(initialCurve(), lamports);
+      initialBuyQuote.textContent = `You would receive about ${formatTokens(toUnits(q.tokensOut, TOKEN_DECIMALS))} tokens at the launch price, after the 1% fee.`;
+    }
+  });
+
   document.getElementById('createForm').addEventListener('submit', e => {
     e.preventDefault();
     notify('Demo only: token creation is not connected to any blockchain.');
@@ -233,18 +250,54 @@ function initToken() {
   initTablist(document.getElementById('detailTabs'));
   initPressedGroup(document.getElementById('timeframes'));
 
+  const curve = curveAtProgress(FEATURED.progress);
+  const ticker = FEATURED.token.ticker;
   const amount = document.getElementById('tradeAmount');
   const submit = document.getElementById('tradeBtn');
+  const quote = document.getElementById('tradeQuote');
+  const quickAmounts = document.getElementById('quickAmounts');
+  const quickPercents = document.getElementById('quickPercents');
+  let mode = 'buy';
+
+  const renderQuote = () => {
+    const q = tradeQuote(curve, { mode, text: amount.value, ticker, wallet: WALLET });
+    quote.classList.toggle('trade-quote-error', Boolean(q.error));
+    amount.setAttribute('aria-invalid', String(Boolean(q.error)));
+    if (q.main) quote.replaceChildren(h('strong', {}, q.main), h('span', {}, q.detail));
+    else quote.textContent = q.error || q.message;
+  };
+
   initPressedGroup(document.getElementById('tradeMode'), btn => {
-    const buy = btn.dataset.mode === 'buy';
+    mode = btn.dataset.mode;
+    const buy = mode === 'buy';
     submit.classList.toggle('buy-btn', buy);
     submit.classList.toggle('sell-btn', !buy);
     submit.textContent = buy ? 'Place buy' : 'Place sell';
+    document.getElementById('tradeUnit').textContent = buy ? 'SOL' : ticker;
+    // SVG elements have no `hidden` property, so toggle display directly.
+    document.getElementById('tradeUnitIcon').style.display = buy ? '' : 'none';
+    document.getElementById('tradeBalance').textContent = buy
+      ? `Balance: ${WALLET.sol} SOL`
+      : `Balance: ${formatTokens(Number(WALLET.tokens))} ${ticker}`;
+    quickAmounts.hidden = !buy;
+    quickPercents.hidden = buy;
+    amount.value = '';
+    renderQuote();
   });
 
-  document.getElementById('quickAmounts').addEventListener('click', e => {
+  amount.addEventListener('input', renderQuote);
+  quickAmounts.addEventListener('click', e => {
     const btn = e.target.closest('[data-amount]');
-    if (btn) amount.value = Number(btn.dataset.amount) || '';
+    if (!btn) return;
+    amount.value = btn.dataset.amount === '0' ? '' : btn.dataset.amount;
+    renderQuote();
+  });
+  quickPercents.addEventListener('click', e => {
+    const btn = e.target.closest('[data-percent]');
+    if (!btn) return;
+    const tokens = parseUnits(WALLET.tokens, TOKEN_DECIMALS) * BigInt(btn.dataset.percent) / 100n;
+    amount.value = tokens === 0n ? '' : formatUnits(tokens, TOKEN_DECIMALS);
+    renderQuote();
   });
   submit.addEventListener('click', () => notify('Demo only: no trade was placed.'));
 

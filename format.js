@@ -18,6 +18,13 @@ export function parseUnits(text, decimals) {
   return BigInt(whole) * 10n ** BigInt(decimals) + BigInt(fraction || '0');
 }
 
+/** Inverse of parseUnits: exact plain decimal string, trailing zeros dropped. */
+export function formatUnits(amount, decimals) {
+  const base = 10n ** BigInt(decimals);
+  const fraction = (amount % base).toString().padStart(decimals, '0').replace(/0+$/, '');
+  return (amount / base).toString() + (fraction ? '.' + fraction : '');
+}
+
 /** Convert integer base units to a Number of whole units. */
 export function toUnits(amount, decimals) {
   return Number(amount) / 10 ** decimals;

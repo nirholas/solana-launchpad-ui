@@ -33,6 +33,28 @@ export const CREATOR_COLORS = [
   '#22c55e,#16a34a', '#ef4444,#f97316', '#8b5cf6,#6366f1',
 ];
 
+/** Fixed USD price of SOL used to turn curve figures into dollars. */
+export const MOCK_SOL_USD = 150;
+
+/**
+ * The token on the King of the Hill banner and on token.html. Its price,
+ * market cap and liquidity are derived from `progress` with curve.js, and
+ * test/figures.test.js checks the static copies in the HTML match.
+ */
+export const FEATURED = {
+  token: TOKENS[0],
+  progress: 0.724,
+  volume24hUsd: 48_210,
+  holders: 4_821,
+  change24h: 342,
+};
+
+/** The mock visitor's wallet on token.html. */
+export const WALLET = {
+  sol: '12.45',
+  tokens: '38000000',
+};
+
 // ── Random helpers ──
 export function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
 export function randItem(arr) { return arr[rand(0, arr.length - 1)]; }

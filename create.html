@@ -141,13 +141,14 @@
         <div class="form-group">
           <label class="form-label" for="initialBuy">Initial Buy (Optional)</label>
           <div class="trade-input-wrap">
-            <input type="text" inputmode="decimal" id="initialBuy" name="initialBuy" class="trade-input" placeholder="0.0" autocomplete="off" aria-describedby="initialBuyHint">
+            <input type="text" inputmode="decimal" id="initialBuy" name="initialBuy" class="trade-input" placeholder="0.0" autocomplete="off" aria-describedby="initialBuyHint initialBuyQuote">
             <div class="trade-input-suffix">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="#9945FF"/><circle cx="12" cy="12" r="6" fill="url(#sol)"/><defs><linearGradient id="sol" x1="6" y1="6" x2="18" y2="18"><stop offset="0%" stop-color="#00FFA3"/><stop offset="100%" stop-color="#DC1FFF"/></linearGradient></defs></svg>
               SOL
             </div>
           </div>
-          <p class="form-hint" id="initialBuyHint">Optional: Buy some of your own token at launch. Tip: keeps your skin in the game.</p>
+          <p class="form-hint" id="initialBuyHint">Optional: buy some of your own token at launch.</p>
+          <p class="form-hint" id="initialBuyQuote"></p>
         </div>
 
         <button type="submit" class="create-submit">🚀 Create Token</button>
