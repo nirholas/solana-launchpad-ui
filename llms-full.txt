@@ -2,26 +2,28 @@
 
 > Token launchpad UI template inspired by pump.fun: dark theme, bonding curves, trading panel, 4 pages, pure HTML/CSS/JS, no dependencies.
 
-# PumpFun Site: Design Template
+# Solana Launchpad UI: Design Template
 
-> **Purpose:** Static UI design template of pump.fun: mock data only, no blockchain integration.
+> **Purpose:** Static UI design template in the style of pump.fun: mock data only, no blockchain integration. Not affiliated with pump.fun.
 
-Static design template clone of pump.fun for the Pump SDK project. **No blockchain functionality**: pure HTML/CSS/JS with mock data.
+A Solana token launchpad front end in plain HTML, CSS and ES modules. **No blockchain functionality**: no wallet connection, no RPC calls, no transactions. Every token, price, trade and profile is mock data, and every page says so in a visible notice.
 
 ## Pages
 
 | Page | File | Description |
 |------|------|-------------|
-| Board | `index.html` | Token grid with tabs (trending/new/top), King of the Hill banner, live activity ticker |
-| Create | `create.html` | Token creation form with image upload, social links, mayhem mode, creator fees |
-| Trade | `token.html` | Token detail with SVG price chart, buy/sell panel, thread/comments, trades table, holder distribution |
-| Profile | `profile.html` | User profile with created/held tokens, activity history, favorites |
+| Board | `index.html` | Token grid, King of the Hill banner, view buttons, search, pausable activity ticker |
+| Create | `create.html` | Token creation form with image picker, social links, option switches and an initial-buy estimate |
+| Trade | `token.html` | Token detail with illustrative price chart, buy/sell panel quoting from the bonding curve, thread, trades and holders |
+| Profile | `profile.html` | Mock user profile with created, held and favourite tokens and an activity table |
 
 ## Live Demo
 
 [solana-launchpad-ui.vercel.app](https://solana-launchpad-ui.vercel.app) (verified serving 2026-07-30). Source: [github.com/nirholas/solana-launchpad-ui](https://github.com/nirholas/solana-launchpad-ui).
 
 ## Running Locally
+
+The pages load ES modules, which browsers block over `file://`, so serve the folder:
 
 ```bash
 npx serve .
@@ -32,19 +34,45 @@ python3 -m http.server 8000
 ## Features
 
 - **Dark theme** with neon green accent (PumpFun-style)
-- **Responsive design**: mobile-first with breakpoints at 480/768/1024px
-- **Activity ticker**: scrolling real-time trade feed
-- **Token card grid**: with bonding curve progress bars, market cap, change %
-- **King of the Hill**: highlighted banner for top token
-- **Trading UI**: buy/sell toggle, quick amount buttons, slippage control
-- **SVG price chart**: placeholder candlestick-style chart
-- **Thread/comments**: chat section with emoji avatars
-- **Transaction table**: buy/sell history with color coding
-- **Holder distribution**: ranked list with percentage bars
-- **Tab navigation**: Terminal, Trending, Top, New, Graduating, Graduated
-- **Mobile nav**: overlay menu for small screens
-- **Fade-in animations**: staggered card entrance
-- **Skeleton loading**: shimmer effect CSS class available
+- **Responsive layout**: desktop-first with breakpoints at 1024/768/480px, checked down to 375px wide
+- **Bonding-curve trade quotes**: `curve.js` implements the constant-product curve (30 SOL / 1,073,000,000 token virtual reserves, 1% fee); the trade panel shows tokens or SOL out, minimum after slippage, fee and price impact
+- **Consistent mock figures**: card market caps follow each card's curve progress, and the featured token's price, market cap and trades are recomputed from the curve in tests
+- **Activity ticker**: randomly generated mock activity, pausable, and still under `prefers-reduced-motion`
+- **Token card grid**: bonding curve progress bars, market cap, change %, with each card a single keyboard stop
+- **King of the Hill**: highlighted banner for the featured token
+- **Search**: the header search filters the board by name or ticker from any page
+- **Trading UI**: buy/sell toggle, quick amounts (SOL presets or % of balance), slippage display
+- **SVG price chart**: static illustrative line chart with timeframe buttons
+- **Thread, trades and holders**: tabbed panel using the WAI-ARIA tabs pattern
+- **Accessible**: WCAG AA colour contrast, visible focus, skip links, labelled controls, landmarks and headings
+- **CSP-ready**: no inline scripts, handlers or style attributes; `vercel.json` sends a strict Content-Security-Policy
+- **Skeleton loading**: shimmer effect CSS class (`.skeleton`) available
+
+## Project layout
+
+| File | Purpose |
+|------|---------|
+| `index.html`, `create.html`, `token.html`, `profile.html` | The four pages |
+| `styles.css` | All styles; theme tokens in `:root` |
+| `app.js` | Page behaviour (ES module); picks an init function from `<body data-page>` |
+| `curve.js` | Bonding-curve math in BigInt base units |
+| `trade-quote.js` | Turns trade-panel input into quote text |
+| `format.js` | Decimal parsing and number formatting |
+| `mock-data.js` | Mock tokens, creators, featured token and the fixed `MOCK_SOL_USD` rate |
+| `test/` | `node:test` suites |
+| `docs/` | Documentation site and guides |
+| `vercel.json` | Security headers, including the CSP |
+
+## Tests
+
+Node 20 or later; nothing to install.
+
+```bash
+npm run check   # node --check on every script
+npm test        # curve math, formatting, quotes, page structure, CSP, contrast
+```
+
+CI runs both on Node 20, 22 and 24.
 
 ## Customization
 
@@ -57,17 +85,23 @@ Edit CSS variables in `styles.css` `:root` to change the color scheme:
 --border: #2a2a3e;      /* Border color */
 ```
 
+The text tokens (`--text-muted`, `--text-dim` and friends) pass WCAG AA on every background token, and `npm test` checks that they still do.
+
+Replace `mock-data.js` to change the data. If you change `FEATURED`, `npm test` reports each figure in `token.html` and `index.html` that needs updating.
+
 ## Deploying
 
 ```bash
-# Vercel
+# Vercel (applies the headers in vercel.json)
 vercel
 
-# Netlify
+# Netlify (ignores vercel.json; copy the headers into netlify.toml)
 netlify deploy --dir=.
 
-# GitHub Pages: enable Pages for this repository
+# GitHub Pages: enable Pages for this repository (cannot send the CSP header)
 ```
+
+Keep scripts in files and markup free of inline handlers and `style` attributes, or the Content-Security-Policy will block them.
 
 ## License
 

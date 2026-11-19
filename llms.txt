@@ -2,7 +2,7 @@
 
 > Token launchpad UI template inspired by pump.fun: dark theme, bonding curves, trading panel, 4 pages, pure HTML/CSS/JS, no dependencies.
 
-solana-launchpad-ui is an open-source repository by nirholas, part of the three.ws ecosystem.
+solana-launchpad-ui is a source-available repository by nirholas (all rights reserved, see LICENSE), part of the three.ws ecosystem. It is a static template with mock data and no blockchain connection.
 
 ## Docs
 
@@ -11,6 +11,8 @@ solana-launchpad-ui is an open-source repository by nirholas, part of the three.
 - [Live Demo](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/README.md#live-demo)
 - [Running Locally](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/README.md#running-locally)
 - [Features](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/README.md#features)
+- [Project layout](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/README.md#project-layout)
+- [Tests](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/README.md#tests)
 - [Customization](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/README.md#customization)
 - [Deploying](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/README.md#deploying)
 - [License](https://github.com/nirholas/solana-launchpad-ui/blob/HEAD/README.md#license)
