@@ -603,7 +603,8 @@ input, textarea, select { font-family: inherit; }
 }
 .king-banner-stats {
   display: flex;
-  gap: 24px;
+  flex-wrap: wrap;
+  gap: 6px 24px;
   font-size: 13px;
   color: var(--text-secondary);
   margin-top: 6px;
@@ -625,6 +626,8 @@ input, textarea, select { font-family: inherit; }
 }
 .chart-header {
   display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
   align-items: center;
   justify-content: space-between;
   padding: 16px 20px;
@@ -649,7 +652,7 @@ input, textarea, select { font-family: inherit; }
   color: var(--green);
 }
 
-.chart-timeframes { display: flex; gap: 4px; }
+.chart-timeframes { display: flex; gap: 4px; overflow-x: auto; max-width: 100%; }
 .chart-tf-btn {
   padding: 5px 12px;
   border-radius: var(--radius-xs);
@@ -1160,10 +1163,12 @@ textarea.form-input { min-height: 100px; resize: vertical; line-height: 1.5; }
   font-size: 13px;
   color: var(--text-muted);
   margin-top: 4px;
+  overflow-wrap: anywhere;
 }
 .profile-stats-row {
   display: flex;
-  gap: 24px;
+  flex-wrap: wrap;
+  gap: 6px 24px;
   margin-top: 10px;
 }
 .profile-stat { font-size: 13px; color: var(--text-secondary); }
@@ -1226,7 +1231,8 @@ textarea.form-input { min-height: 100px; resize: vertical; line-height: 1.5; }
 }
 .footer-links {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 8px 20px;
   font-size: 13px;
 }
 .footer-links a { color: var(--text-muted); }
@@ -1256,7 +1262,8 @@ textarea.form-input { min-height: 100px; resize: vertical; line-height: 1.5; }
   .token-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
   .king-banner { flex-direction: column; text-align: center; }
   .king-banner-stats { justify-content: center; }
-  .tab-bar { flex-wrap: nowrap; }
+  .tab-bar, .tab-group { flex-wrap: nowrap; }
+  .chart-area { height: 260px; }
   .filter-group { margin-left: 0; }
   .form-row { grid-template-columns: 1fr; }
   .profile-header { flex-direction: column; text-align: center; }
@@ -1264,6 +1271,18 @@ textarea.form-input { min-height: 100px; resize: vertical; line-height: 1.5; }
 }
 
 @media (max-width: 480px) {
+  .header-inner { gap: 10px; padding: 0 12px; }
+  /* Keep the logo link named for screen readers while showing only the mark. */
+  .logo-text, .logo-crown {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+  .btn-wallet { padding: 8px 12px; }
+  .container { padding: 0 16px; }
+  .chart-header, .thread-input-wrap { padding-left: 16px; padding-right: 16px; }
   .token-grid { grid-template-columns: 1fr; }
   .trade-quick-amounts { flex-wrap: wrap; }
 }
