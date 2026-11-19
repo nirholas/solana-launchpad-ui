@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Syntax-check every script
+        run: npm run check
+      - name: Validate vercel.json
+        run: node -e "JSON.parse(require('fs').readFileSync('vercel.json', 'utf8'))"
+      - name: Unit and page-structure tests
+        run: npm test
